@@ -1,6 +1,7 @@
 import React from 'react';
+import SortOutShow from '../models/SortOutShow';
 
-class TvShowsList extends React.Component {
+class RenderShowsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,23 +32,16 @@ class TvShowsList extends React.Component {
 
     render() {
         const { error, isLoaded, list } = this.state;
-        console.log(list);
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if  (!isLoaded) {
             return <div>Loading</div>;
         } else {
             return (
-                <ul>
-                    {list.map(show => (
-                        <li key={show.show.id}>
-                            {show.show.url} {show.show.name}
-                        </li>
-                    ))}
-                </ul>
+                <SortOutShow showsList={list}/>
             );
         }
     }
 }
 
-export default TvShowsList;
+export default RenderShowsList;
